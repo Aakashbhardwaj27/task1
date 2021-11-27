@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [boxCount,setBoxCount]=useState([])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <div className="column1">
+       <button onClick={()=>{setBoxCount((boxCount)=>[...boxCount,boxCount.length+1])}}><div className="add">+</div></button>
+      <h5>{boxCount.length}</h5>
+       <button onClick={()=>{setBoxCount(boxCount.filter((e)=>boxCount.indexOf(e)!==boxCount.length-1))}}><div className="delete">−</div></button>
+     </div>
+     <div className="column2">
+{boxCount.length>0?boxCount.map((index)=><div style={{fontSize:5*index,width:5*index,height:5*index}} className="box">{index}</div>
+  ):null}
+     </div>
     </div>
   );
 }
